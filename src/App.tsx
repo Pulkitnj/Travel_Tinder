@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import JoinUs from "./components/JoinUs";
 import CreateTrip from "./components/CreateTrip";
 import AddPlace from "./components/AddPlace";
+import SwipeSection from "./components/SwipeSection";
 
 export default function Component() {
   return (
@@ -16,6 +17,7 @@ export default function Component() {
         <CreateTrip />
         <AddPlace />
         <FeaturesSection />
+        <SwipeSection />
       </main>
       <Footer />
     </div>
