@@ -1,30 +1,53 @@
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import {Link} from "react-router-dom";
 
 const CreateTrip = () => {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 sm:px-16">
-      <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
-        <div className="space-y-2">
-          <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+    <motion.section
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      className="w-full py-16 md:py-28 lg:py-36 sm:px-16 bg-white text-black border-t"
+    >
+      <div className="container grid items-center gap-10 px-4 md:px-6 lg:grid-cols-2">
+        {/* Left Content */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="space-y-4"
+        >
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
             Plan Your Next Adventure
           </h2>
-          <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            Leverage our comprehensive travel planning tools href seamlessly
-            coordinate logistics, share itineraries, and ensure a smooth journey
-            with your new travel companions.
+          <p className="max-w-[600px] text-lg text-gray-700 leading-relaxed">
+            Use our travel planning tools to coordinate logistics, share itineraries, and ensure a seamless journey with your travel companions.
           </p>
-        </div>
-        <div className="flex flex-col gap-2 min-[400px]:flex-row lg:justify-end">
-          <Button>Explore Trips</Button>
-          <a
-            href="#"
-            className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 flex-1"
+          <p className="max-w-[600px] text-lg text-gray-700 leading-relaxed">
+            Discover popular destinations, budget-friendly routes, and hidden gems that make each trip unique.
+          </p>
+        </motion.div>
+
+        {/* Right Content */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="flex flex-col gap-3 min-[400px]:flex-row lg:justify-end"
+        >
+          <Button className="flex-1 border border-black bg-black text-white">
+            Explore Trips
+          </Button>
+          <Link
+            to="/Add-Trip"
+            className="flex-1 inline-flex h-10 items-center justify-center rounded-md border border-gray-400 px-8 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-black"
           >
             Create Trip
-          </a>
-        </div>
+          </Link>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
