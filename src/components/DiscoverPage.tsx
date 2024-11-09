@@ -17,7 +17,7 @@ export function DiscoverPage() {
             <Button className="h-10">Start Exploring</Button>
           </div>
           <img
-            src="/discover-india.jpg"
+            src="/india.jpg"
             width="550"
             height="550"
             alt="Discover India"
@@ -39,15 +39,15 @@ export function DiscoverPage() {
                 <h3 className="text-xl font-semibold mb-4">{category.category}</h3>
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                   {category.places.map((place) => (
-                    <div key={place} className="rounded-xl shadow-md overflow-hidden">
+                    <div key={place} className="rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg">
                       <img
                         src={`/${place.toLowerCase().replace(/\s+/g, '')}.jpg`}
                         alt={place}
                         className="w-full h-32 object-cover"
                       />
                       <div className="p-4">
-                        <h4 className="text-md font-semibold">{place}</h4>
-                        <p className="text-sm text-muted-foreground">Explore the beauty of {place}.</p>
+                        <h4 className="text-md font-semibold text-gray-800">{place}</h4>
+                        <p className="text-sm text-gray-500">Explore the beauty of {place}.</p>
                       </div>
                     </div>
                   ))}
@@ -71,7 +71,7 @@ export function DiscoverPage() {
               <a
                 key={place}
                 href={`/${place.toLowerCase()}`}
-                className="hover:underline text-primary-600"
+                className="block p-2 rounded-lg hover:underline text-primary-600 transition-transform transform hover:scale-105 hover:bg-primary-100"
               >
                 {place}
               </a>
