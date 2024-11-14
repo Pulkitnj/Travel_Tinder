@@ -4,10 +4,10 @@ import { HeroSection } from "@/components/HeroSection";
 import { FeaturesSection } from "@/components/FeaturesSection";
 import { Footer } from "@/components/Footer";
 import JoinUs from "@/components/JoinUs";
-import CreateTrip from "@/components/CreateTrip";
 import AddPlace from "@/components/AddPlace";
 import SwipeSection from "@/components/SwipeSection";
 import { DiscoverPage } from "./components/DiscoverPage";
+import CreateTrip from '@/components/CreateTrip';
 
 
 export default function App() {
