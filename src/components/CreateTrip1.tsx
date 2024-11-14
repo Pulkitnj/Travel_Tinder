@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import {Link} from "react-router-dom";
 
-const CreateTrip = () => {
+const CreateTrip1 = () => {
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
@@ -51,4 +51,4 @@ const CreateTrip = () => {
   );
 };
 
-export default CreateTrip;
+export default CreateTrip1;

@@ -21,6 +21,7 @@ export function DiscoverPage() {
             width="550"
             height="550"
             alt="Discover India"
+            loading="lazy" // Enables lazy loading
             className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
           />
         </div>
@@ -39,10 +40,14 @@ export function DiscoverPage() {
                 <h3 className="text-xl font-semibold mb-4">{category.category}</h3>
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                   {category.places.map((place) => (
-                    <div key={place} className="rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg">
+                    <div 
+                      key={place} 
+                      className="rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg"
+                    >
                       <img
                         src={`/${place.toLowerCase().replace(/\s+/g, '')}.jpg`}
                         alt={place}
+                        loading="lazy"
                         className="w-full h-32 object-cover"
                       />
                       <div className="p-4">

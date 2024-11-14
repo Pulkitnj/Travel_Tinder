@@ -9,6 +9,7 @@ import AddPlace from "@/components/AddPlace";
 import SwipeSection from "@/components/SwipeSection";
 import { DiscoverPage } from "./components/DiscoverPage";
 
+
 export default function App() {
   return (
     <Router>
