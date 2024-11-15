@@ -26,11 +26,13 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { Save } from "lucide-react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 function CreateTrip() {
   const [place, setPlace] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     location: null,
     days: "",
@@ -97,6 +99,7 @@ function CreateTrip() {
       id: docId
     });
     setLoading(false);
+    navigate(`/view-trip/${docId}`);
   };
 
   const handleGoogleSignIn = useGoogleLogin({
@@ -135,7 +138,7 @@ function CreateTrip() {
         <div>
           <h2 className="text-xl my-3 font-medium">Where do you want to go?</h2>
           <GooglePlacesAutocomplete
-            apiKey={import.meta.env.VITE_GOOGLE_PLACE_API_KEY}
+            apiKey={process.env.VITE_GOOGLE_PLACE_API_KEY}
             selectProps={{
               place,
               onChange: (v) => {

@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from 'react-router-dom';
 
 export function HeroSection() {
+  const navigate = useNavigate();
+  const handleNavigation = () => {
+    navigate('/Create');
+  };
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 xl:py-20 sm:px-16">
       <div className="container px-4 md:px-6">
@@ -15,12 +20,12 @@ export function HeroSection() {
               adventures, and create lasting memories.
             </p>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Button className="flex-[2] h-10">Join Now</Button>
+              <Button className="flex-[2] h-10" onClick={handleNavigation}>Join Now</Button>
               <a
-                href="#"
+                href="/Connect"
                 className="flex-1 inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm hover:bg-accent hover:text-accent-foreground"
               >
-                Learn More
+                Swipe
               </a>
             </div>
           </div>
@@ -38,9 +43,9 @@ export function HeroSection() {
           <h2 className="text-2xl font-bold text-center sm:text-3xl mb-6">
             Explore Top Destinations
           </h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
             {["Paris", "Tokyo", "New York", "Sydney"].map((destination) => (
-              <div key={destination} className="rounded-xl shadow-lg overflow-hidden">
+              <div key={destination} className="rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-all cursor-pointer">
                 <img
                   src={`/${destination.toLowerCase()}.jpg`}
                   alt={destination} 

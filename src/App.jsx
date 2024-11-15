@@ -8,7 +8,8 @@ import AddPlace from "@/components/AddPlace";
 import SwipeSection from "@/components/SwipeSection";
 import { DiscoverPage } from "./components/DiscoverPage";
 import CreateTrip from '@/components/CreateTrip';
-
+import ViewTrip from "./components/ViewTrip";
+import Plan from "./pages/Plan";
 
 export default function App() {
   return (
@@ -24,6 +25,9 @@ export default function App() {
             <Route path="/Add-Trip" element={<AddPlace />} />
             <Route path="/About" element={<FeaturesSection />} />
             <Route path="/Connect" element={<SwipeSection />} />
+            <Route path="/plan" element={<Plan />} />
+            <Route path="/view-trip/:tripId" element={<ViewTrip />} />
+            
           </Routes>
         </main>
         <Footer />

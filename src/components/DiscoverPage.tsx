@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from 'react-router-dom';
 
 export function DiscoverPage() {
+  const navigate = useNavigate();
+  const handleNavigation = () => {
+    navigate('/Create');
+  };
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 xl:py-20 sm:px-16">
       <div className="container px-4 md:px-6">
@@ -14,7 +19,7 @@ export function DiscoverPage() {
             <p className="max-w-[600px] text-muted-foreground md:text-xl">
               From beaches to mountains and vibrant cities, explore the best of India based on your interests and travel preferences.
             </p>
-            <Button className="h-10">Start Exploring</Button>
+            <Button className="h-10" onClick={handleNavigation}>Start Exploring</Button>
           </div>
           <img
             src="/india.jpg"
