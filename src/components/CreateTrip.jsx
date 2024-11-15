@@ -138,7 +138,7 @@ function CreateTrip() {
         <div>
           <h2 className="text-xl my-3 font-medium">Where do you want to go?</h2>
           <GooglePlacesAutocomplete
-            apiKey={process.env.VITE_GOOGLE_PLACE_API_KEY}
+            apiKey={import.meta.env.VITE_GOOGLE_PLACE_API_KEY}
             selectProps={{
               place,
               onChange: (v) => {
