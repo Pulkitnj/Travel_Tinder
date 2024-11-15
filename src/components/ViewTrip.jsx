@@ -15,7 +15,7 @@ function ViewTrip() {
     },[tripId]);
  
     const getTripData = async () => {
-        const docRef = doc(db, 'Trips' , "LA");
+        const docRef = doc(db, 'Trips' , tripId);
         const docSnap = await getDoc(docRef);
 
         if(docSnap.exists()){

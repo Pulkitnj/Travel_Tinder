@@ -86,21 +86,33 @@ function CreateTrip() {
     SaveTrip(result?.response?.text());
   };
 
-  const SaveTrip = async (TripData) => {
-    // Save the trip to the database]import { doc, setDoc } from "firebase/firestore";
-    // Add a new document in collection "cities"
-    setLoading(true);
-    const user = JSON.parse(localStorage.getItem("user"));
-    const docId = Date.now().toString();
-    await setDoc(doc(db, "Trips", "LA"), {
-      userSelection: formData,
-      tripData: JSON.parse(TripData),
-      userEmail: user?.email,
-      id: docId
-    });
-    setLoading(false);
-    navigate(`/view-trip/${docId}`);
+  const SaveTrip = async (TripData, formData) => {
+    try {
+      setLoading(true);
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      if (!user?.email) {
+        throw new Error("User not authenticated or email missing");
+      }
+  
+      const docId = Date.now().toString();
+      const parsedTripData = typeof TripData === "string" ? JSON.parse(TripData) : TripData;
+  
+      const docRef = doc(db, "Trips", docId); // Use a unique ID
+      await setDoc(docRef, {
+        userSelection: formData,
+        tripData: parsedTripData,
+        userEmail: user.email,
+        id: docId,
+      });
+  
+      navigate(`/view-trip/${docId}`);
+    } catch (error) {
+      console.error("Error saving trip:", error);
+    } finally {
+      setLoading(false);
+    }
   };
+  
 
   const handleGoogleSignIn = useGoogleLogin({
     onSuccess: (codeResp) => {
