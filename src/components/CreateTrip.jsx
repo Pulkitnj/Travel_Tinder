@@ -71,10 +71,8 @@ function CreateTrip() {
       toast("Please fill days less than 5");
     }
 
-    const FINAL_PROMPT = AI_PROMPT.replace(
-      "{location}",
-      formData?.location?.label
-    )
+    const FINAL_PROMPT = AI_PROMPT
+      .replace("{location}", formData?.location?.label)
       .replace("{totalDays}", formData?.days)
       .replace("{traveler}", formData?.traveler)
       .replace("{budget}", formData?.budget);
@@ -92,6 +90,7 @@ function CreateTrip() {
     setLoading(true);
     const user = await JSON.parse(localStorage.getItem("user"));
     console.log(user);
+    console.log(TripData);
     if(user){
       const docId = Date.now().toString();
     await setDoc(doc(db, "Trips", docId), {
