@@ -21,7 +21,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FaGoogle } from 'react-icons/fa';
+import { FaGoogle } from "react-icons/fa";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { Save } from "lucide-react";
@@ -71,8 +71,10 @@ function CreateTrip() {
       toast("Please fill days less than 5");
     }
 
-    const FINAL_PROMPT = AI_PROMPT
-      .replace("{location}", formData?.location?.label)
+    const FINAL_PROMPT = AI_PROMPT.replace(
+      "{location}",
+      formData?.location?.label
+    )
       .replace("{totalDays}", formData?.days)
       .replace("{traveler}", formData?.traveler)
       .replace("{budget}", formData?.budget);
@@ -91,41 +93,44 @@ function CreateTrip() {
     const user = await JSON.parse(localStorage.getItem("user"));
     console.log(user);
     console.log(TripData);
-    if(user){
+    if (user) {
       const docId = Date.now().toString();
-    await setDoc(doc(db, "Trips", docId), {
-      userSelection: formData,
-      tripData: JSON.parse(TripData),
-      userEmail: user?.email,
-      id: docId
-    });
-    setLoading(false);
-    navigate(`/view-trip/${docId}`);
+      await setDoc(doc(db, "Trips", docId), {
+        userSelection: formData,
+        tripData: JSON.parse(TripData),
+        userEmail: user?.email,
+        id: docId,
+      });
+      setLoading(false);
+      navigate(`/view-trip/${docId}`);
     }
-    
   };
 
   const handleGoogleSignIn = useGoogleLogin({
     onSuccess: (codeResp) => {
-      console.log("Google Sign-In Success:", codeResp);
       getUsersProfile(codeResp);
     },
     onError: (error) => console.log("Sign-In Error:", error),
   });
 
-  const getUsersProfile=(tokenInfo)=>{
-    axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`,{
-      headers:{
-        Authorization: `Bearer ${tokenInfo?.access_token}`,
-        Accept: 'Application/json'
-      }
-    }).then((res)=>{
-      console.log(res);
-      localStorage.setItem("user", JSON.stringify(res.data));
-      setOpenDialog(false);
-      handleGenerateTrip();
-    })
-  }
+  const getUsersProfile = (tokenInfo) => {
+    axios
+      .get(
+        `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`,
+        {
+          headers: {
+            Authorization: `Bearer ${tokenInfo?.access_token}`,
+            Accept: "Application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        setOpenDialog(false);
+        handleGenerateTrip();
+      });
+  };
 
   return (
     <div className="sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10">
@@ -204,38 +209,41 @@ function CreateTrip() {
         </div>
       </div>
       <div className="my-10 justify-center flex">
-        <Button 
-        disabled={loading}
-        onClick={handleGenerateTrip}>
-        {loading?
-          <AiOutlineLoading3Quarters className="h-7 w-7 animate-spin"/>:
-          'Generate Trip'
-        }
+        <Button disabled={loading} onClick={handleGenerateTrip}>
+          {loading ? (
+            <AiOutlineLoading3Quarters className="h-7 w-7 animate-spin" />
+          ) : (
+            "Generate Trip"
+          )}
         </Button>
       </div>
       <Dialog open={openDialog}>
-  <DialogContent className="p-6 rounded-lg shadow-lg bg-white">
-    <DialogHeader>
-      <DialogTitle className="text-3xl font-bold text-center mb-2">Log In</DialogTitle>
-      <DialogDescription className="text-center">
-        <span className="flex items-center justify-center gap-2 mb-4">
-          <img src="/logo.png" alt="Logo" className="h-9" />
-          <span className="text-lg font-semibold text-gray-800">
-            Travel Tinder
-          </span>
-        </span>
-        <button
-          className="flex items-center justify-center gap-3 bg-gray-800 hover:bg-gray-900 transition text-gray-100 font-semibold py-2 px-4 rounded-md shadow-sm w-full"
-          onClick={handleGoogleSignIn}
-        >
-          <FaGoogle />
-          <span>Sign in with Google</span>
-        </button>
-        <span className="text-gray-500 mt-2 block">Use your Google account to continue</span>
-      </DialogDescription>
-    </DialogHeader>
-  </DialogContent>
-</Dialog>
+        <DialogContent className="p-6 rounded-lg shadow-lg bg-white">
+          <DialogHeader>
+            <DialogTitle className="text-3xl font-bold text-center mb-2">
+              Log In
+            </DialogTitle>
+            <DialogDescription className="text-center">
+              <span className="flex items-center justify-center gap-2 mb-4">
+                <img src="/logo.png" alt="Logo" className="h-9" />
+                <span className="text-lg font-semibold text-gray-800">
+                  Travel Tinder
+                </span>
+              </span>
+              <button
+                className="flex items-center justify-center gap-3 bg-gray-800 hover:bg-gray-900 transition text-gray-100 font-semibold py-2 px-4 rounded-md shadow-sm w-full"
+                onClick={handleGoogleSignIn}
+              >
+                <FaGoogle />
+                <span>Sign in with Google</span>
+              </button>
+              <span className="text-gray-500 mt-2 block">
+                Use your Google account to continue
+              </span>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

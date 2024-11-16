@@ -10,6 +10,8 @@ import { DiscoverPage } from "./components/DiscoverPage";
 import CreateTrip from '@/components/CreateTrip';
 import ViewTrip from "./components/ViewTrip";
 import Plan from "./pages/Plan";
+import MyTrips from "./components/MyTrips";
+
 
 export default function App() {
   return (
@@ -26,8 +28,8 @@ export default function App() {
             <Route path="/About" element={<FeaturesSection />} />
             <Route path="/Connect" element={<SwipeSection />} />
             <Route path="/plan" element={<Plan />} />
+            <Route path="/my-trips" element={<MyTrips />} />
             <Route path="/view-trip/:tripId" element={<ViewTrip />} />
-            
           </Routes>
         </main>
         <Footer />

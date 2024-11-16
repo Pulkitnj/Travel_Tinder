@@ -14,7 +14,7 @@ function PlaceCardItem({place}) {
             <h2 className='font-bold text-lg'>{place.PlaceName||place.placeName}</h2>
             <p className='text-sm text-gray-500'>{place.PlaceDetails||place.placeDetails}</p>
             <h2 className='font-medium text-sm mt-2'>💰 {place.TicketPricing||place.ticketPricing}</h2>
-            <h2 className='font-medium text-sm mt-2'>⏱️ {place.BestTimeToVisit||place.bestTimeToVisit}</h2>
+            <h2 className='font-medium text-sm mt-2'>⏱️ {place.BestTimeToVisit||place.bestTimeToVisit||place.bestTimetoVisit}</h2>
         </div>
         </div>
     </a>
