@@ -11,6 +11,7 @@ import CreateTrip from '@/components/CreateTrip';
 import ViewTrip from "./components/ViewTrip";
 import Plan from "./pages/Plan";
 import MyTrips from "./components/MyTrips";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="/Connect" element={<SwipeSection />} />
             <Route path="/plan" element={<Plan />} />
             <Route path="/my-trips" element={<MyTrips />} />
+            <Route path="/t&c" element={<TermsAndConditions />} />
             <Route path="/view-trip/:tripId" element={<ViewTrip />} />
           </Routes>
         </main>

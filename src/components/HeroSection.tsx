@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export function HeroSection() {
   const navigate = useNavigate();
   const handleNavigation = () => {
-    navigate('/Create');
+    navigate("/Create");
   };
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 xl:py-20 sm:px-16">
@@ -20,7 +20,9 @@ export function HeroSection() {
               adventures, and create lasting memories.
             </p>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Button className="flex-[2] h-10" onClick={handleNavigation}>Join Now</Button>
+              <Button className="flex-[2] h-10" onClick={handleNavigation}>
+                Join Now
+              </Button>
               <a
                 href="/Connect"
                 className="flex-1 inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm hover:bg-accent hover:text-accent-foreground"
@@ -45,15 +47,20 @@ export function HeroSection() {
           </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
             {["Paris", "Tokyo", "New York", "Sydney"].map((destination) => (
-              <div key={destination} className="rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-all cursor-pointer">
+              <div
+                key={destination}
+                className="rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-all cursor-pointer"
+              >
                 <img
                   src={`/${destination.toLowerCase()}.jpg`}
-                  alt={destination} 
+                  alt={destination}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-4">
                   <h3 className="text-lg font-semibold">{destination}</h3>
-                  <p className="text-sm text-muted-foreground">A must-visit city with endless attractions.</p>
+                  <p className="text-sm text-muted-foreground">
+                    A must-visit city with endless attractions.
+                  </p>
                 </div>
               </div>
             ))}
@@ -65,13 +72,29 @@ export function HeroSection() {
           <h2 className="text-2xl font-bold sm:text-3xl mb-6">How It Works</h2>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
             {[
-              { step: "Join Our Community", description: "Sign up and meet like-minded travelers." },
-              { step: "Plan Your Adventure", description: "Browse destinations and create trip plans." },
-              { step: "Start Your Journey", description: "Embark on unforgettable experiences together." },
+              {
+                step: "Join Our Community",
+                description: "Sign up and meet like-minded travelers.",
+                link: "/JoinUs",
+              },
+              {
+                step: "Plan Your Adventure",
+                description: "Browse destinations and create trip plans.",
+                link: "/plan",
+              },
+              {
+                step: "Start Your Journey",
+                description: "Embark on unforgettable experiences together.",
+                link: "/Connect",
+              },
             ].map((item) => (
               <div key={item.step} className="p-6 border rounded-xl shadow-sm">
-                <h3 className="text-lg font-semibold">{item.step}</h3>
-                <p className="text-sm text-muted-foreground mt-2">{item.description}</p>
+                <a href={item.link} className="block">
+                  <h3 className="text-lg font-semibold">{item.step}</h3>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    {item.description}
+                  </p>
+                </a>
               </div>
             ))}
           </div>
@@ -79,16 +102,36 @@ export function HeroSection() {
 
         {/* Testimonials Section */}
         <div className="mt-20 text-center">
-          <h2 className="text-2xl font-bold sm:text-3xl mb-6">What Our Users Say</h2>
+          <h2 className="text-2xl font-bold sm:text-3xl mb-6">
+            What Our Users Say
+          </h2>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { name: "Alice", feedback: "I found amazing travel buddies and had the best experience of my life!" },
-              { name: "Bob", feedback: "Planning a trip has never been so easy and fun." },
-              { name: "Cara", feedback: "Highly recommend this platform to all solo travelers out there." },
+              {
+                name: "Amit",
+                feedback:
+                  "This platform is amazing! I found great travel buddies for my trip.",
+              },
+              {
+                name: "Priya",
+                feedback: "Planning a trip has never been this easy and fun. I love it!",
+              },
+              {
+                name: "Ravi",
+                feedback:
+                  "I highly recommend this platform to all solo travelers!",
+              },
             ].map((testimonial) => (
-              <div key={testimonial.name} className="p-6 bg-muted rounded-xl shadow-lg">
-                <p className="text-sm text-muted-foreground">"{testimonial.feedback}"</p>
-                <h4 className="text-lg font-semibold mt-4">{testimonial.name}</h4>
+              <div
+                key={testimonial.name}
+                className="p-6 bg-muted rounded-xl shadow-lg"
+              >
+                <p className="text-sm text-muted-foreground">
+                  "{testimonial.feedback}"
+                </p>
+                <h4 className="text-lg font-semibold mt-4">
+                  {testimonial.name}
+                </h4>
               </div>
             ))}
           </div>

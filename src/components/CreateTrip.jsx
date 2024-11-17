@@ -51,7 +51,6 @@ function CreateTrip() {
   }, [formData]);
 
   const handleGenerateTrip = async () => {
-    setLoading(true);
     const user = localStorage.getItem("user");
 
     if (!user) {
@@ -66,24 +65,28 @@ function CreateTrip() {
       !formData.traveler
     ) {
       toast("Please fill all the fields");
+      return;
     }
-    if (formData.days > 5) {
+    else if (formData.days > 5) {
       toast("Please fill days less than 5");
+      return;
     }
-
-    const FINAL_PROMPT = AI_PROMPT.replace(
-      "{location}",
-      formData?.location?.label
-    )
-      .replace("{totalDays}", formData?.days)
-      .replace("{traveler}", formData?.traveler)
-      .replace("{budget}", formData?.budget);
-
-    const result = await chatSession.sendMessage(FINAL_PROMPT);
-
-    console.log(result?.response?.text());
-    setLoading(false);
-    SaveTrip(result?.response?.text());
+    else{
+      setLoading(true);
+      const FINAL_PROMPT = AI_PROMPT.replace(
+        "{location}",
+        formData?.location?.label
+      )
+        .replace("{totalDays}", formData?.days)
+        .replace("{traveler}", formData?.traveler)
+        .replace("{budget}", formData?.budget);
+  
+      const result = await chatSession.sendMessage(FINAL_PROMPT);
+  
+      console.log(result?.response?.text());
+      setLoading(false);
+      SaveTrip(result?.response?.text());
+    }
   };
 
   const SaveTrip = async (TripData) => {
@@ -162,6 +165,7 @@ function CreateTrip() {
             type="number"
             placeholder="ex-3"
             className="border-2 border-gray-300 rounded-md p-2 w-full"
+            required
             onChange={(e) => handleInputChange("days", e.target.value)}
           />
         </div>

@@ -75,7 +75,7 @@ const JoinUs = () => {
           )}
           <p className="text-xs text-gray-600">
             Sign up to get started. By joining, you agree to our{" "}
-            <a href="#" className="underline underline-offset-2">
+            <a href="/t&c" className="underline underline-offset-2">
               Terms &amp; Conditions
             </a>
           </p>
