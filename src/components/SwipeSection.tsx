@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Heart, X, Plane, Users, Calendar } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { useSwipeable } from 'react-swipeable';
 
 interface Destination {
   id: number
@@ -79,11 +80,19 @@ export default function SwipeSection() {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % destinations.length)
   }
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => handleDislike(),
+    onSwipedRight: () => handleLike(),
+    preventScrollOnSwipe: true,
+    trackMouse: true, // Allows swiping with mouse
+  });
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <h1 className="text-3xl font-bold mb-8 text-primary">TravelSwipe</h1>
       <AnimatePresence mode="wait">
         <motion.div
+          {...swipeHandlers}
           key={currentDestination.id}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -116,6 +125,7 @@ export default function SwipeSection() {
           </Card>
         </motion.div>
       </AnimatePresence>
+      {/* Buttons for Like and Dislike */}
       <div className="flex justify-center mt-8 space-x-4">
         <Button
           variant="outline"
@@ -136,6 +146,7 @@ export default function SwipeSection() {
           <span className="sr-only">Like</span>
         </Button>
       </div>
+      {/* Liked Destinations Section */}
       <div className="mt-8">
         <h2 className="text-xl font-semibold mb-4">Liked Destinations</h2>
         {likedDestinations.length > 0 ? (
@@ -152,5 +163,5 @@ export default function SwipeSection() {
         )}
       </div>
     </div>
-  )
-}
+  );
+};

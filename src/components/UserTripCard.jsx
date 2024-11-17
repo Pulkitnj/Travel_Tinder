@@ -1,15 +1,24 @@
-import React from 'react'
+import React from 'react';
 
-function UserTripCard({trip}) {
+function UserTripCard({ trip, onClick }) {
   return (
-    <div>
-      <img src='/placeholder.jpg' alt={trip?.name} className='object-cover rounded-xl'/>
-      <div className=''>
-        <h2 className='font-bold text-lg'>{trip?.userSelection?.location?.label}</h2>
-        <h2 className='text-sm text-gray-600'>{trip?.userSelection?.days} Days trip with {trip?.userSelection?.budget}</h2>
+    <div 
+      className="cursor-pointer p-4 bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300" 
+      onClick={onClick} // Trigger navigation when the card is clicked
+    >
+      <img
+        src={trip?.userSelection?.image || '/placeholder.jpg'} // Use a dynamic or placeholder image
+        alt={trip?.userSelection?.location?.label || 'Trip'}
+        className="object-cover rounded-xl w-full h-40"
+      />
+      <div className="mt-2">
+        <h2 className="font-bold text-lg">{trip?.userSelection?.location?.label || 'Unknown Location'}</h2>
+        <h2 className="text-sm text-gray-600">
+          {trip?.userSelection?.days || 'N/A'} Days trip with {trip?.userSelection?.budget || 'N/A'} Budget
+        </h2>
       </div>
     </div>
-  )
+  );
 }
 
-export default UserTripCard
+export default UserTripCard;

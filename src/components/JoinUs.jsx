@@ -1,8 +1,33 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { db } from "@/service/firebaseConfig"; // Import your Firebase configuration
+import { collection, addDoc } from "firebase/firestore"; // Firestore functions
 
 const JoinUs = () => {
+  const [email, setEmail] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!email) {
+      setStatusMessage("Please enter a valid email.");
+      return;
+    }
+
+    try {
+      // Add the email to Firestore
+      await addDoc(collection(db, "Subscribers"), { email, timestamp: new Date() });
+      setStatusMessage("Thank you for joining! You're now part of our community.");
+      setEmail(""); // Clear input field
+    } catch (error) {
+      console.error("Error adding subscriber:", error);
+      setStatusMessage("Something went wrong. Please try again later.");
+    }
+  };
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
@@ -33,16 +58,21 @@ const JoinUs = () => {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="mx-auto w-full max-w-md space-y-4"
         >
-          <form className="flex gap-2">
+          <form onSubmit={handleFormSubmit} className="flex gap-2">
             <Input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="flex-1 border-gray-300 focus:ring-black"
             />
             <Button type="submit" className="shrink-0 border-black bg-black text-white">
               Join Now
             </Button>
           </form>
+          {statusMessage && (
+            <p className="mt-2 text-sm text-gray-600">{statusMessage}</p>
+          )}
           <p className="text-xs text-gray-600">
             Sign up to get started. By joining, you agree to our{" "}
             <a href="#" className="underline underline-offset-2">

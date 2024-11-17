@@ -29,13 +29,17 @@ function MyTrips() {
     }
 
   return (
-    <div className='sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-10'>
-      <h2 className='font-bold text-4xl'>
-        My Trips
-      </h2>
+    <div className="sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-10 mb-10 text-center">
+  <h2 className="font-bold text-4xl sm:text-5xl">
+    My Trips
+  </h2>
       <div className='grid grid-cols-2 md:grid-cols-3 gap-5 mt-10'>
         {userTrips?.map((trip,index)=>(
-            <UserTripCard key={index} trip={trip} className=''/>
+            <UserTripCard 
+            key={index} 
+            trip={trip} 
+            className=''
+            onClick={() => navigate(`/view-trip/${trip.id}`)}/>
         ))}
       </div>
     </div>

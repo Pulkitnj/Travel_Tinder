@@ -5,7 +5,7 @@ export function Footer() {
       <div className="text-center sm:text-left">
         <h2 className="text-lg font-bold text-gray-700">
           <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
-            Created by Pulkit Jain
+            Created by a MITian
           </span>
         </h2>
         <p className="text-sm text-gray-500">&copy; 2024 Solo Traveler. All rights reserved.</p>

@@ -9,7 +9,7 @@ function HotelList({ trip }) {
         {trip.tripData?.hotels?.map((hotel) => (
             <a
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-              hotel.name + ", " + hotel.address
+              hotel.HotelName + ", " + hotel.HotelAddress
             )}`}
             target="_blank"
             rel="noopener noreferrer"

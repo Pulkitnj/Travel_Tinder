@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom';
+import LazyLoad from 'react-lazyload';
 
 export function DiscoverPage() {
   const navigate = useNavigate();
@@ -21,14 +22,16 @@ export function DiscoverPage() {
             </p>
             <Button className="h-10" onClick={handleNavigation}>Start Exploring</Button>
           </div>
-          <img
-            src="/india.jpg"
-            width="550"
-            height="550"
-            alt="Discover India"
-            loading="lazy" // Enables lazy loading
-            className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
-          />
+          <LazyLoad height={200} offset={100} once>
+            <img
+              src="/india.jpg"
+              width="550"
+              height="550"
+              alt="Discover India"
+              loading="lazy" // Enables lazy loading
+              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
+            />
+          </LazyLoad>
         </div>
 
         {/* Suggested Destinations by Category */}
@@ -49,12 +52,14 @@ export function DiscoverPage() {
                       key={place} 
                       className="rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg"
                     >
-                      <img
-                        src={`/${place.toLowerCase().replace(/\s+/g, '')}.jpg`}
-                        alt={place}
-                        loading="lazy"
-                        className="w-full h-32 object-cover"
-                      />
+                      <LazyLoad height={200} offset={100} once>
+                        <img
+                          src={`/${place.toLowerCase().replace(/\s+/g, '')}.jpg`}
+                          alt={place}
+                          loading="lazy"
+                          className="w-full h-32 object-cover"
+                        />
+                      </LazyLoad>
                       <div className="p-4">
                         <h4 className="text-md font-semibold text-gray-800">{place}</h4>
                         <p className="text-sm text-gray-500">Explore the beauty of {place}.</p>
