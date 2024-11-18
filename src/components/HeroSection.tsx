@@ -88,8 +88,8 @@ export function HeroSection() {
                 link: "/Connect",
               },
             ].map((item) => (
-              <div key={item.step} className="p-6 border rounded-xl shadow-sm">
-                <a href={item.link} className="block">
+              <div key={item.step} className="p-6 border rounded-xl shadow-sm hover:bg-gray-800 hover:text-white">
+                <a href={item.link} className="block ">
                   <h3 className="text-lg font-semibold">{item.step}</h3>
                   <p className="text-sm text-muted-foreground mt-2">
                     {item.description}

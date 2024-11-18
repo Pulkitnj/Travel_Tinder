@@ -4,7 +4,7 @@ function PlaceCardItem({place}) {
   return (
     <a
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-              place.placeName)}`}
+              place.PlaceName)}`}
             target="_blank"
             rel="noopener noreferrer"
           >
