@@ -94,8 +94,8 @@ function CreateTrip() {
     // Add a new document in collection "cities"
     setLoading(true);
     const user = await JSON.parse(localStorage.getItem("user"));
-    console.log(user);
-    console.log(TripData);
+
+
     if (user) {
       const docId = Date.now().toString();
       await setDoc(doc(db, "Trips", docId), {

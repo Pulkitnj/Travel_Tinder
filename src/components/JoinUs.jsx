@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { db } from "@/service/firebaseConfig"; // Import your Firebase configuration
 import { collection, addDoc } from "firebase/firestore"; // Firestore functions
+import { toast } from "sonner";
 
 const JoinUs = () => {
   const [email, setEmail] = useState("");

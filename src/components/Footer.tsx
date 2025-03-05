@@ -16,7 +16,7 @@ export function Footer() {
         {["Terms of Service", "Privacy", "Contact"].map((item) => (
           <a
             key={item}
-            href="#"
+            href="/t&c"
             className="text-sm text-gray-600 hover:text-gray-800 hover:underline underline-offset-4 transition duration-200"
           >
             {item}
