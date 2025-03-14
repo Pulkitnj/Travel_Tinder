@@ -25,7 +25,7 @@ export default function App() {
             <Route path="/JoinUs" element={<JoinUs />} />
             <Route path="/Discover" element={<DiscoverPage />} />
             <Route path="/Create" element={<CreateTrip />} />
-            <Route path="/Add-Trip" element={<AddPlace />} />
+            <Route path="/share" element={<AddPlace />} />
             <Route path="/About" element={<FeaturesSection />} />
             <Route path="/Connect" element={<SwipeSection />} />
             <Route path="/plan" element={<Plan />} />

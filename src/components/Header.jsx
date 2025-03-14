@@ -76,7 +76,7 @@ export function Header() {
 
       {/* Navigation for larger screens */}
       <nav className="ml-auto hidden md:flex gap-4 sm:gap-6">
-        {["JoinUs", "Discover", "Create", "Plan", "Connect", "About"].map(
+        {["JoinUs", "Discover", "Create", "Plan", "Share", "Connect", "About"].map(
           (item) => (
             <Link
               key={item}

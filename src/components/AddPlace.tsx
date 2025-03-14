@@ -4,10 +4,10 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 
-const    AddPlace = () => {
+const AddPlace = () => {
   return (
     <div>
-      <section className="w-full py-16 bg-gray-50 md:py-24 lg:py-32 px-4 md:px-6">
+      <section className="w-full py-4 bg-gray-50 md:py-4 lg:py-8 px-4 md:px-6">
         <div className="container mx-auto max-w-4xl space-y-10">
           <motion.div
             className="flex flex-col items-center text-center space-y-6"
@@ -56,7 +56,7 @@ const    AddPlace = () => {
                 <Label htmlFor="place-image">Upload Image</Label>
                 <Input id="place-image" type="file" className="file-input" />
               </div>
-              <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold">
+              <Button type="submit" className="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold">
                 Add Place
               </Button>
             </form>
