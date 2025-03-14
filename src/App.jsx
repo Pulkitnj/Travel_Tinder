@@ -1,17 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
-import { FeaturesSection } from "@/components/FeaturesSection";
 import { Footer } from "@/components/Footer";
-import JoinUs from "@/components/JoinUs";
+import JoinUs from "./pages/JoinUs";
 import AddPlace from "@/components/AddPlace";
-import SwipeSection from "@/components/SwipeSection";
-import { DiscoverPage } from "./components/DiscoverPage";
-import CreateTrip from '@/components/CreateTrip';
+import SwipeSection from "./pages/SwipeSection";
+import { DiscoverPage } from "./pages/DiscoverPage";
+import CreateTrip from './pages/CreateTrip';
 import ViewTrip from "./components/ViewTrip";
 import Plan from "./pages/Plan";
 import MyTrips from "./components/MyTrips";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import {About} from "./pages/AboutUs";
 
 
 export default function App() {
@@ -26,7 +26,7 @@ export default function App() {
             <Route path="/Discover" element={<DiscoverPage />} />
             <Route path="/Create" element={<CreateTrip />} />
             <Route path="/share" element={<AddPlace />} />
-            <Route path="/About" element={<FeaturesSection />} />
+            <Route path="/About" element={<About />} />
             <Route path="/Connect" element={<SwipeSection />} />
             <Route path="/plan" element={<Plan />} />
             <Route path="/my-trips" element={<MyTrips />} />

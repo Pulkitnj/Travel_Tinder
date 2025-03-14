@@ -4,7 +4,7 @@ import {
   AI_PROMPT,
   SelectBudgetOptions,
   SelectTravelersList,
-} from "./constants/options";
+} from "../components/constants/options";
 import { chatSession } from "@/service/AIModal";
 import { db } from "@/service/firebaseConfig";
 import { ChatSession } from "@google/generative-ai";
@@ -34,6 +34,7 @@ function CreateTrip() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    startlocation: null,
     location: null,
     days: "",
     budget: null,
@@ -59,6 +60,7 @@ function CreateTrip() {
       return;
     }
     if (
+      !formData.startlocation ||
       !formData.location ||
       !formData.days ||
       !formData.budget ||
@@ -146,6 +148,19 @@ function CreateTrip() {
       </p>
 
       <div className="mt-20 flex flex-col gap-9">
+      <div>
+          <h2 className="text-xl my-3 font-medium">Where do you want to go from?</h2>
+          <GooglePlacesAutocomplete
+            apiKey={import.meta.env.VITE_GOOGLE_PLACE_API_KEY}
+            selectProps={{
+              place,
+              onChange: (v) => {
+                setPlace(v);
+                handleInputChange("startlocation", v);
+              },
+            }}
+          />
+        </div>
         <div>
           <h2 className="text-xl my-3 font-medium">Where do you want to go?</h2>
           <GooglePlacesAutocomplete

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export function FeaturesSection() {
+export function About() {
   const features = [
     {
       title: "Personalized Matches",
