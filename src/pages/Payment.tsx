@@ -1,4 +1,3 @@
-import React from 'react'
 import GooglePayButton from "@google-pay/button-react";
 import { useNavigate } from "react-router-dom";
 
