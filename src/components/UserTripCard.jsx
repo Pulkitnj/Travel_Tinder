@@ -4,10 +4,10 @@ function UserTripCard({ trip, onClick }) {
   return (
     <div 
       className="cursor-pointer p-4 bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300" 
-      onClick={onClick} // Trigger navigation when the card is clicked
+      onClick={onClick}
     >
       <img
-        src={trip?.userSelection?.image || '/placeholder.jpg'} // Use a dynamic or placeholder image
+        src={trip?.userSelection?.image || '/placeholder.jpg'}
         alt={trip?.userSelection?.location?.label || 'Trip'}
         className="object-cover rounded-xl w-full h-40"
       />
