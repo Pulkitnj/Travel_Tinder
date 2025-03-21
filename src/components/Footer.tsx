@@ -8,7 +8,7 @@ export function Footer() {
             Created by a MITian
           </span>
         </h2>
-        <p className="text-sm text-gray-500">&copy; 2025 Solo Traveler. All rights reserved.</p>
+        <p className="text-sm text-gray-500">© {new Date().getFullYear()} Solo Traveler. All rights reserved.</p>
       </div>
 
       {/* Navigation Links */}

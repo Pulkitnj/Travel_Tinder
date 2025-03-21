@@ -8,6 +8,8 @@ import SwipeSection from "./pages/SwipeSection";
 import { DiscoverPage } from "./pages/DiscoverPage";
 import CreateTrip from './pages/CreateTrip';
 import ViewTrip from "./components/ViewTrip";
+import FlightBookingPage from "./pages/Bookings";
+import FlightPage from "./pages/FlightPage";
 import Plan from "./pages/Plan";
 import MyTrips from "./components/MyTrips";
 import TermsAndConditions from "./pages/TermsAndConditions";
@@ -31,6 +33,8 @@ export default function App() {
             <Route path="/plan" element={<Plan />} />
             <Route path="/my-trips" element={<MyTrips />} />
             <Route path="/t&c" element={<TermsAndConditions />} />
+            <Route path='/booking' element={<FlightBookingPage />}/>
+            <Route path='/flightpage' element={<FlightPage />}/>
             <Route path="/view-trip/:tripId" element={<ViewTrip />} />
           </Routes>
         </main>
