@@ -20,7 +20,7 @@ import { FaGoogle } from "react-icons/fa";
 import axios from 'axios';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import Signup from '../pages/Signup';
-import Signin from '../pages/SIgnin';
+import Signin from '../pages/Signin';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
