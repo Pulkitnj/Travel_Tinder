@@ -18,12 +18,16 @@ import {
 } from "@/components/ui/dialog";
 import { FaGoogle } from "react-icons/fa";
 import axios from 'axios';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import Signup from '../pages/Signup';
+import Signin from '../pages/SIgnin';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const [openDialog, setOpenDialog] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   useEffect(() => {
     console.log(user);
@@ -76,7 +80,7 @@ export function Header() {
 
       {/* Navigation for larger screens */}
       <nav className="ml-auto hidden md:flex gap-4 sm:gap-6">
-        {["JoinUs", "Discover", "Plan", "Connect", "Share", "About"].map(
+        {["JoinUs", "Discover", "Plan", "Booking", "Connect", "Share", "About"].map(
           (item) => (
             <Link
               key={item}
@@ -133,32 +137,52 @@ export function Header() {
         )}
       </div>
       <Dialog open={openDialog}>
-        <DialogContent className="p-6 rounded-lg shadow-lg bg-white">
-          <DialogHeader>
-            <DialogTitle className="text-3xl font-bold text-center mb-2">
-              Log In
-            </DialogTitle>
-            <DialogDescription className="text-center">
-              <span className="flex items-center justify-center gap-2 mb-4">
-                <img src="/logo.png" alt="Logo" className="h-9" />
-                <span className="text-lg font-semibold text-gray-800">
-                  Travel Tinder
-                </span>
+      <DialogContent className="p-6 rounded-lg shadow-lg bg-white max-w-md">
+        <DialogHeader>
+          <DialogTitle className="text-3xl font-bold text-center mb-2">
+            {isLogin ? "Log In" : "Sign Up"}
+          </DialogTitle>
+          <DialogDescription className="text-center">
+            <span className="flex items-center justify-center gap-2 mb-4">
+              <img src="/logo.png" alt="Logo" className="h-9" />
+              <span className="text-lg font-semibold text-gray-800">
+                Travel Tinder
               </span>
-              <Button
-                className="flex items-center justify-center gap-3 bg-gray-800 hover:bg-gray-900 transition text-gray-100 font-semibold py-2 px-4 rounded-md shadow-sm w-full"
-                onClick={handleGoogleSignIn}
-              >
-                <FaGoogle />
-                <span>Sign in with Google</span>
-              </Button>
-              <span className="text-gray-500 mt-2 block">
-                Use your Google account to continue
-              </span>
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+            </span>
+
+            {/* Google Sign-in Button */}
+            <Button
+              className="flex items-center justify-center gap-3 bg-gray-800 hover:bg-gray-900 transition text-gray-100 font-semibold py-2 px-4 rounded-md shadow-sm w-full"
+              onClick={handleGoogleSignIn}
+            >
+              <FaGoogle />
+              <span>Sign in with Google</span>
+            </Button>
+            <span className="text-gray-500 mt-2 block">
+              Use your Google account to continue
+            </span>
+          </DialogDescription>
+        </DialogHeader>
+
+        {/* Toggle between Signin & Signup */}
+        <div className="mt-4">
+          {isLogin ? <Signin /> : <Signup />}
+        </div>
+
+        {/* Switch between login and signup */}
+        <div className="text-center mt-4">
+          <span className="text-gray-600">
+            {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+            <button
+              className="text-blue-600 font-semibold hover:underline"
+              onClick={() => setIsLogin(!isLogin)}
+            >
+              {isLogin ? "Sign up" : "Log in"}
+            </button>
+          </span>
+        </div>
+      </DialogContent>
+    </Dialog>
 
       {/* Mobile Menu Button */}
       <Button
@@ -177,7 +201,7 @@ export function Header() {
       {menuOpen && (
         <nav className="absolute top-14 left-0 w-full bg-white shadow-md md:hidden">
           <ul className="flex flex-col items-center gap-2 py-4">
-            {["JoinUs", "Discover", "Create", "Plan", "Connect", "About"].map(
+            {["JoinUs", "Discover", "Plan", "Booking", "Connect", "Share", "About"].map(
               (item) => (
                 <Link
                   key={item}
